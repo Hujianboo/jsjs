@@ -2,7 +2,7 @@
  * @Author: Hujianbo
  * @Date: 2022-01-15 16:04:36
  * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-15 17:47:34
+ * @LastEditTime: 2022-01-16 23:19:22
  * @FilePath: /jsjs/src/Value.ts
  */
 export type kindType = 'let' | 'const' | 'var'
@@ -10,14 +10,14 @@ export type kindType = 'let' | 'const' | 'var'
 export class SimpleValue {
   kind: kindType
   value: any 
-  constructor(value:any,kind: kindType) {
+  constructor(value:any,kind: kindType = 'var') {
     this.value = value
     this.kind = kind
   }
-  get(){
+  get v(){
     return this.value
   }
-  set(value:any){
+  set v(value:any){
     this.value = value
   }
 }

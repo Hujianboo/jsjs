@@ -2,19 +2,30 @@
  * @Author: Hujianbo
  * @Date: 2022-01-15 16:04:23
  * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-15 22:14:28
+ * @LastEditTime: 2022-01-16 18:47:46
  * @FilePath: /jsjs/src/Scope.ts
  */
 import { SimpleValue,kindType } from "./Value";
+import Global from './Global'
 // scope type
 type scopeType = 'function' | 'block'
 export default class Scope {
   type: scopeType
   parentScope?: Scope
   declaration = Object.create(null)
+  global = Global
   constructor(type:scopeType,parentScope?:Scope) {
     this.type = type
     this.parentScope = parentScope
+  }
+  get(name:string):any {
+    if(this.declaration[name]){
+      return this.declaration[name]
+    }else if(this.parentScope){
+      return this.parentScope.get(name)
+    }else {
+      return this.global[name]
+    }
   }
   declare(name:string,value: any,kind:kindType){
     switch (kind) {

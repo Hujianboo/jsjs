@@ -2,7 +2,7 @@
  * @Author: Hujianbo
  * @Date: 2022-01-11 00:15:04
  * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-15 22:21:47
+ * @LastEditTime: 2022-01-16 23:01:35
  * @FilePath: /jsjs/src/NodeTravel.ts
  */
 
@@ -11,7 +11,7 @@ import * as babel from '@babel/parser'
 import * as babelType from 'babel-types'
 import Scope from './Scope'
 // 节点遍历器，
-// 包含一个节点，以及对应的遍历方法e
+// 包含一个节点，以及对应的遍历方法
 export default class NodeTravel<T> {
   node: T
   scope: Scope
@@ -26,6 +26,6 @@ export default class NodeTravel<T> {
     if(!method){
       throw new Error(`esmap中不存在该类method,${node.type}`)
     }
-    method(nodeTravel)
+    return method(nodeTravel)
   }
 }
