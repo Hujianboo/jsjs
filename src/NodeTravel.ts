@@ -1,11 +1,3 @@
-/*
- * @Author: Hujianbo
- * @Date: 2022-01-11 00:15:04
- * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-23 00:34:07
- * @FilePath: /jsjs/src/NodeTravel.ts
- */
-
 import {es2015} from './esmap'
 import * as babel from '@babel/parser'
 import * as babelType from 'babel-types'
