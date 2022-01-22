@@ -72,26 +72,9 @@ const es2015map:es2015Type = {
       }
       nodeTravel.traverse(node.body,scope)
     }
+    //未完待续。。。
     return fn;
-    // const fn = function (this: any) {
-    //     // const scope = env.createFunctionScope(true);
 
-    //     // scope.constDeclare('this', this);
-    //     // scope.constDeclare('arguments', arguments);
-
-    //     // for (let i = 0, l = node.params.length; i < l; i++) {
-    //     //     const { name } = <ESTree.Identifier>node.params[i];
-    //     //     scope.varDeclare(name, arguments[i]);
-    //     // }
-    //     const signal = nodeTravel.traverse(node.body, { scope });
-    // };
-
-    // Object.defineProperties(fn, {
-    //     name: { value: node.id ? node.id.name : '' },
-    //     length: { value: node.params.length }
-    // });
-
-    // return fn;
   },
   MemberExpression(nodeTravel:NodeTravel<babelType.MemberExpression>){
     let obj = nodeTravel.traverse(nodeTravel.node.object)
