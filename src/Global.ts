@@ -1,10 +1,3 @@
-/*
- * @Author: Hujianbo
- * @Date: 2022-01-15 16:04:12
- * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-16 23:41:50
- * @FilePath: /jsjs/src/Global.ts
- */
 import {SimpleValue} from './Value'
 const Global:any = {
   Function,

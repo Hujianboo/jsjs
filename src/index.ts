@@ -1,10 +1,3 @@
-/*
- * @Author: Hujianbo
- * @Date: 2022-01-10 22:44:01
- * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-16 23:42:10
- * @FilePath: /jsjs/src/index.ts
- */
 import * as acorn from "acorn";
 import * as esTree from 'estree';
 import * as babelType from 'babel-types';
@@ -13,8 +6,14 @@ import Scope from "./Scope";
 import NodeTravel from './NodeTravel';
 let code = `
   let a = 0;
-  let b = 23;
+  let b = 1;
+  let c = 33;
   console.log(b,a);
+  function func(){
+    console.log(c)
+    let c = 66
+  }
+  func()
 `
 let ast= acorn.parse(code,{
   ecmaVersion: 2015,
@@ -25,7 +24,7 @@ class Jsjs {
   constructor (code = '', extraDeclaration = {}) {
     this.ast = babel.parse(code,{
       sourceType: 'module',
-    }).program
+    }).program as any
     this.run()
   }
   public run() {

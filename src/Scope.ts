@@ -1,14 +1,7 @@
-/*
- * @Author: Hujianbo
- * @Date: 2022-01-15 16:04:23
- * @LastEditors: Hujianbo
- * @LastEditTime: 2022-01-16 18:47:46
- * @FilePath: /jsjs/src/Scope.ts
- */
 import { SimpleValue,kindType } from "./Value";
 import Global from './Global'
 // scope type
-type scopeType = 'function' | 'block'
+export type scopeType = 'function' | 'block'
 export default class Scope {
   type: scopeType
   parentScope?: Scope
