@@ -1,5 +1,5 @@
 # jsjs
-用js实现js
+用js实现js. (暂定es6 主体参考了很多开源的元循环解释器的结构，求人一起贡献遍历器的模块，太多一个人填不完所有坑)
 ~~Program 程序~~
 
 ~~VariableDeclaration 变量声明~~
