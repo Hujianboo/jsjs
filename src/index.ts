@@ -7,16 +7,14 @@ import NodeTravel from './NodeTravel';
 let code = `
   let a = 0;
   let b = 1;
-  let c = 33;
+  var c = 33;
   console.log(b,a);
   function func(){
-    function funb(){
-      let c = 44
-      console.log('abasc')
-    }
-    funb()
+    return 55;
   }
-  func()
+  console.log(c)
+  var c = func()
+  console.log(func())
 `
 let ast= acorn.parse(code,{
   ecmaVersion: 2015,

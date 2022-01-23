@@ -1,5 +1,6 @@
 import NodeTravel from '../NodeTravel'
 import * as babel from '@babel/parser'
+import { CFWords } from '../CFWords'
 import * as babelType from 'babel-types'
 interface es2015Type {
   [key:string]: any
@@ -43,7 +44,6 @@ const es2015map:es2015Type = {
   NullLiteral(nodeTravel:NodeTravel<babelType.NullLiteral>){
     return null
   },
-  // 创建块级作用域
   BlockStatement(nodeTravel:NodeTravel<babelType.BlockStatement>){
     const node = nodeTravel.node;
     // 变量提升
@@ -58,7 +58,10 @@ const es2015map:es2015Type = {
       if(subBody.type === 'VariableDeclaration' || subBody.type === 'FunctionDeclaration'){
         continue;
       }else{
-        nodeTravel.traverse(subBody)
+        const result = nodeTravel.traverse(subBody)
+        if(CFWords.isReturn(result)){
+          return result.value
+        }
       }
     }  
   },
@@ -70,7 +73,10 @@ const es2015map:es2015Type = {
     const args = nodeTravel.node.arguments.map(item => nodeTravel.traverse(item))
     return func.apply(null,args)
   },
-
+  ReturnStatement(nodeTravel:NodeTravel<babelType.ReturnStatement>){
+    const value = nodeTravel.traverse(nodeTravel.node.argument)
+    return new CFWords('return',value)
+  },
   // 函数表达式
   FunctionExpression(nodeTravel:NodeTravel<babelType.FunctionExpression>) {
     const node = nodeTravel.node;
@@ -82,9 +88,8 @@ const es2015map:es2015Type = {
         const {name} = node.params[i] as babelType.Identifier
         scope.$let(name,arguments[i])
       }
-      nodeTravel.traverse(node.body,scope)
+      return nodeTravel.traverse(node.body,scope)
     }
-    //未完待续。。。
     return fn;
 
   },
