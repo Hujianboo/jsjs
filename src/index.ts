@@ -10,8 +10,11 @@ let code = `
   let c = 33;
   console.log(b,a);
   function func(){
-    console.log(c)
-    let c = 66
+    function funb(){
+      let c = 44
+      console.log('abasc')
+    }
+    funb()
   }
   func()
 `

@@ -31,6 +31,18 @@ const es2015map:es2015Type = {
   NumericLiteral(nodeTravel:NodeTravel<babelType.NumericLiteral>){
     return nodeTravel.node.value
   },
+  StringLiteral(nodeTravel:NodeTravel<babelType.StringLiteral>){
+    return nodeTravel.node.value
+  },
+  BooleanLiteral(nodeTravel:NodeTravel<babelType.BooleanLiteral>){
+    return nodeTravel.node.value
+  },
+  RegExpLiteral(nodeTravel:NodeTravel<babelType.RegExpLiteral>){
+    return new RegExp(nodeTravel.node.pattern,nodeTravel.node.flags)
+  },
+  NullLiteral(nodeTravel:NodeTravel<babelType.NullLiteral>){
+    return null
+  },
   // 创建块级作用域
   BlockStatement(nodeTravel:NodeTravel<babelType.BlockStatement>){
     const node = nodeTravel.node;
